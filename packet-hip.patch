@@ -1,5 +1,5 @@
---- b/epan/dissectors/packet-hip.c	2026-06-26 15:43:51
-+++ a/epan/dissectors/packet-hip.c	2026-06-26 15:44:23
+--- a/epan/dissectors/packet-hip.c	2026-06-27 11:44:56
++++ b/epan/dissectors/packet-hip.c	2026-06-27 11:48:15
 @@ -39,7 +39,10 @@
  
  #define HI_ALG_DSA 3
@@ -432,7 +432,7 @@
 +                          /* E len */
 +                          e_len = tvb_get_uint8(tvb, newoffset);
 +                          e_len_item = proto_tree_add_item(t, hf_hip_tlv_host_id_e_len, tvb, newoffset,
-+                                              (e_len > 255) ? 3 : 1, ENC_BIG_ENDIAN);
++                                              (e_len == 0) ? 3 : 1, ENC_BIG_ENDIAN);
 +                          newoffset++;
 +                          hi_len -= 1; /* e_len */
 +                          if (e_len == 0) { /* e_len is 0 followed by 16-bit value */
